@@ -5,54 +5,53 @@
 // BONUS: creare una funzione per formattare il totale in € (Intl.NumberFormat)
 
 function getEuroFormat(number) {
-  return new Intl.NumberFormat("it-IT", {
+
+  console.log(new Intl.NumberFormat("it-IT", {
     style: "currency",
     currency: "EUR",
-  }).format(number);
+  }).format(number));
+
 }
 
 // BONUS: creare una funzione per formattare la data di nascita (Intl.DateTimeFormat)
 
 function getBirthFormat(user) {
-  let ms = Date.parse(user.personalData.birthday);
+  let parseBirthdayDate = Date.parse(user.personalData.birthday);
 
   console.log(
+    "nato: ",
     new Intl.DateTimeFormat("it-IT", {
-      dateStyle: "full",
-      timeStyle: "long",
-      timeZone: "Australia/Sydney",
-    }).format(ms)
+      dateStyle: "short",
+    }).format(parseBirthdayDate)
   );
-
-  return new Intl.DateTimeFormat("it-IT").format(ms);
 }
 
 //Creare una funzione che restituisca il valore dell'equipaggiamento per ogni utente
 
 function getEquipmentValue(user) {
-  //let totPrice = 0;
-
-  // user.equipment.forEach((el) => {
-  //   totPrice += el.price;
-  // });
 
   const total = user.equipment.reduce((accumulator, element) => {
     return element.price + accumulator;
   }, 0);
-  console.log(total);
 
   return total
 }
 
 //Creare una funzione che restituisca i nomi di tutti gli utenti
-function getName(array) {
+function functionWrapper(array) {
   array.forEach((el) => {
-    console.log(el.name + " " + el.lastname);
 
+    getFullName(el)
     getEquipment(el);
-    getEquipmentValue(el);
     getBirthFormat(el);
+
+    getEuroFormat(getEquipmentValue(el));
+
   });
+}
+
+function getFullName(person) {
+  console.log(person.name + " " + person.lastname);
 }
 
 //Creare una funzione che restituisca una lista di tutto l'equipaggiamento
@@ -142,6 +141,4 @@ const users = [
   },
 ];
 
-console.log(users.length, users);
-
-getName(users);
+functionWrapper(users);
