@@ -1,0 +1,5 @@
+- Creare una funzione che restituisca i nomi di tutti gli utenti
+- Creare una funzione che restituisca una lista di tutto l'equipaggiamento
+- Creare una funzione che restituisca il valore dell'equipaggiamento per ogni utente
+- BONUS: creare una funzione per formattare il totale in € (Intl.NumberFormat)
+- BONUS: creare una funzione per formattare la data di nascita (Intl.DateTimeFormat)
